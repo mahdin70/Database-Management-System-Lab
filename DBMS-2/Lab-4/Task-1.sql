@@ -1,0 +1,24 @@
+CREATE OR REPLACE FUNCTION calculate_balance (p_accno INT)
+RETURN NUMERIC
+IS
+  v_balance NUMERIC(10, 2);
+BEGIN
+  SELECT SUM(AMOUNT)
+  INTO v_balance
+  FROM TRANSACTION
+  WHERE ACCNO = p_accno;
+
+  UPDATE BALANCE
+  SET PRINCIPALAMOUNT = PRINCIPALAMOUNT + v_balance,
+      PROFITAMOUNT = PROFITAMOUNT + v_balance * (SELECT PROFITRATE FROM ACCOUNTPROPERTY WHERE ID = 
+                                                   (SELECT ACCCODE FROM ACCOUNT WHERE ID = p_accno))
+  WHERE ACCNO = p_accno;
+
+  SELECT PRINCIPALAMOUNT + PROFITAMOUNT
+  INTO v_balance
+  FROM BALANCE
+  WHERE ACCNO = p_accno;
+
+  RETURN v_balance;
+END;
+/

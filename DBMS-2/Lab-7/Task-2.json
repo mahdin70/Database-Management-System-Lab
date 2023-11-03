@@ -1,0 +1,23 @@
+//a
+db.users.insertOne({name:"John",email:john@gmail.com,password:"123456"})
+
+//b
+db.users.insertOne({name:"Nibir Kabir",email: "kabira@gmail.com",password: "mypassword",phone: "444-567-8901",date_of_birth: "1992-11-25",address: "Anytown USA",profile_creation_date: ISODate("2023-03-14T01:10:18.965Z"),hobbies: ["Reading", "Hiking", "Yoga"]})
+
+//c
+db.users.insertOne({name:"Nibir Kabir",email: "kabira@gmail.com",password: "mypassword",phone: "444-567-8901",date_of_birth: "1992-11-25",address: "Anytown USA",profile_creation_date: ISODate("2023-02-11T01:10:18.965Z"),working_status:"BCS Cadre"})
+
+//d
+db.followers.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),follower_id:[ObjectId("640fe3ffa439cdcf75fcbaf3"),ObjectId("640fe3ffa439cdcf75fcbaf4")]})
+db.followers.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),follower_id:[ObjectId("640fe3ffa439cdcf75fcbaf2"),ObjectId("640fe3ffa439cdcf75fcbaf3")]})
+db.followers.insertOne({user_id:ObjectId("6418c87cf8bb5a4cffcc76be"),follower_id:[ObjectId("640fe3ffa439cdcf75fcbaf2"),ObjectId("640fe3ffa439cdcf75fcbaf3"),ObjectId("640fe3ffa439cdcf75fcbaf4"),ObjectId("6418c8b5f8bb5a4cffcc76bf")]});
+
+//e
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),text:"Hello, Social media",creationDate:"2023-03-12"})
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf3"),text:"Hello Mama",creationDate:"2023-03-13"})
+db.posts.insertMany([{user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"SPL Cancel",creationDate:"2023-03-13"},{user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"Cholo Ghurte Jai",creationDate:"2023-03-13"}])
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf3"),text:"Hello Mama",creationDate:ISODate("2023-03-13T01:11:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf2","640fe3ffa439cdcf75fcbaf4"]})
+
+//f
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),text:"Cholo Ghurte Jai",creationDate:ISODate("2023-03-12T01:11:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf3","640fe3ffa439cdcf75fcbaf4"],comments:["Shei Bhai Shei","Bhai Amakeo Nen"]})
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"Good Morning",creationDate:ISODate("2023-03-12T01:12:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf3"],comments:["Cholen bhai Nasta Kori"]})

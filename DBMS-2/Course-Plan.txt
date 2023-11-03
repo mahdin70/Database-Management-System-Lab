@@ -1,0 +1,4 @@
+Basics of RDBMS
+ERD
+PL/SQL
+NoSQL (MongoDB)

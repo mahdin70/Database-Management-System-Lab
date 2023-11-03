@@ -1,0 +1,16 @@
+//a
+db.posts.aggregate([{$lookup: {from: "users",localField: "user_id",foreignField: "_id",as: "user"}},{$unwind: "$user"},{$sort: {creationDate: -1}},{$project: {_id: 1,text: 1,creationDate: 1,likes: 1,"user.name": 1}}]);
+
+
+//b
+db.posts.find({creationDate: {$gt: new Date(Date.now() - 24*60*60*1000)}});
+
+
+//c
+db.users.aggregate([{$lookup: {from: "followers",localField: "_id",foreignField: "user_id",as: "followers"}},{$project: {_id: 1,name: 1,email: 1,followers_count: { $size: "$followers.follower_id" }}},{$match: {followers_count: { $gt: 3 }}}]);
+
+db.followers.aggregate([{ $unwind: "$follower_id" },{$group: {_id: "$user_id",followers_count: { $sum: 1 }}},{$match: {followers_count: { $gt: 3 }}},{$lookup: {from: "users",localField: "_id",foreignField: "_id",as: "user"}},{$project: {_id: 0,user_id: "$_id",name: { $arrayElemAt: ["$user.name", 0] },email: {$arrayElemAt: ["$user.email", 0] },followers_count: 1}}]);
+
+//d
+db.followers.aggregate([{ $unwind: "$follower_id" },{$group: {_id: "$follower_id",following_count: { $sum: 1 }}},{$match: {following_count: { $gt: 3 }}},{$lookup: {from: "users",localField: "_id",foreignField: "_id",as: "user"}},{$project: {_id: 0,user_id: "$_id",name: { $arrayElemAt: ["$user.name", 0] },email: { $arrayElemAt: ["$user.email", 0] },following_count: 1}}]);
+

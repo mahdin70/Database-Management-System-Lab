@@ -1,0 +1,61 @@
+db.users.insertOne({
+  "name":"Mukit Mahdin",
+  "email":"x@gmail.com",
+  "password": "password123",
+  "phone": "123-456-7890",
+  "date_of_birth": "1990-01-01",
+  "address": "123 Main St, Anytown USA",
+  "profile_creation_date":"2022-05-26",  
+  "working_status": "Software Engineer at Acme Inc.",
+  "bios": "I love coding and exploring new technologies.",
+  "hobbies": ["Reading", "Traveling"]  
+})
+
+db.users.insertOne({
+  "name": "Alice Lee",
+  "email": "alicelee@example.com",
+  "password": "mypassword",
+  "phone": "987-654-3210",
+  "date_of_birth": "1995-06-12",
+  "address": "456 Elm St, Anytown USA",
+  "profile_creation_date": ISODate("2022-08-01T00:00:00Z"),
+  "working_status": "Graphic Designer at XYZ Corp.",
+  "bios": "I am passionate about art and design.",
+  "hobbies": ["Drawing", "Photography", "Cooking"]
+})
+
+db.users.insertMany([{
+  "name": "Samuel Johnson",
+  "email": "sjohnson@example.com",
+  "password": "mypassword",
+  "phone": "555-123-4567",
+  "date_of_birth": "1987-03-19",
+  "address": "789 Oak St, Anytown USA",
+  "profile_creation_date": ISODate("2021-12-15T00:00:00Z"),
+  "working_status": "Sales Manager at ABC Inc.",
+  "bios": "I enjoy meeting new people and helping them solve problems.",
+  "hobbies": ["Golf", "Fishing", "Cooking"]
+},
+{
+  "name": "Samantha Rodriguez",
+  "email": "srodriguez@example.com",
+  "password": "mypassword",
+  "phone": "444-567-8901",
+  "date_of_birth": "1992-11-25",
+  "address": "321 Maple St, Anytown USA",
+  "profile_creation_date": ISODate("2023-01-05T00:00:00Z"),
+  "working_status": "Marketing Coordinator at XYZ Corp.",
+  "bios": "I love creating engaging content and connecting with people.",
+  "hobbies": ["Reading", "Hiking", "Yoga"]
+}]
+)
+
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),text:"Hello, Social media",creationDate:"2023-03-12"})
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf3"),text:"Hello Mama",creationDate:"2023-03-13"})
+db.posts.insertMany([{user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"SPL Cancel",creationDate:"2023-03-13"},{user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"Cholo Ghurte Jai",creationDate:"2023-03-13"}])
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf3"),text:"Hello Mama",creationDate:ISODate("2023-03-13T01:11:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf2","640fe3ffa439cdcf75fcbaf4"]})
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),text:"Cholo Ghurte Jai",creationDate:ISODate("2023-03-12T01:11:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf3","640fe3ffa439cdcf75fcbaf4"],comments:["Shei Bhai Shei","Bhai Amakeo Nen"]})
+db.posts.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),text:"Good Morning",creationDate:ISODate("2023-03-12T01:12:18.965Z"),likes:["640fe3ffa439cdcf75fcbaf3"],comments:["Cholen bhai Nasta Kori"]})
+
+db.followers.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf2"),follower_id:[ObjectId("640fe3ffa439cdcf75fcbaf3"),ObjectId("640fe3ffa439cdcf75fcbaf4")]})
+db.followers.insertOne({user_id:ObjectId("640fe3ffa439cdcf75fcbaf4"),follower_id:[ObjectId("640fe3ffa439cdcf75fcbaf2"),ObjectId("640fe3ffa439cdcf75fcbaf3")]})

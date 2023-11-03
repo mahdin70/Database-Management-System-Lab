@@ -1,0 +1,31 @@
+CREATE TABLE Customers (
+  CustomerID INT PRIMARY KEY,
+  Name VARCHAR(50),
+  DOB DATE,
+  Address VARCHAR(100)
+);
+
+CREATE TABLE SIMs (
+  SIMID INT PRIMARY KEY,
+  CustomerID INT REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Plans (
+  PlanID INT PRIMARY KEY,
+  PlanName VARCHAR(50),
+  ChargePerMinute DECIMAL(5,2)
+);
+
+CREATE TABLE SIMPlans (
+  SIMID INT REFERENCES SIMs(SIMID),
+  PlanID INT REFERENCES Plans(PlanID),
+  PRIMARY KEY(SIMID, PlanID)
+);
+
+CREATE TABLE OutgoingCalls (
+  CallID INT PRIMARY KEY,
+  SIMID INT REFERENCES SIMs(SIMID),
+  CallBegin DATETIME,
+  CallEnd DATETIME,
+  Charge DECIMAL(8,2)
+);
